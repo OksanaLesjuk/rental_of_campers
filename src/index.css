@@ -1,15 +1,24 @@
-@import-normalize; /* bring in normalize.css styles */
+@import '~normalize.css'; /* bring in normalize.css styles */
+
+/* @import '@fontsource/roboto/300.css';
+@import '@fontsource/roboto/400.css';
+@import '@fontsource/roboto/500.css'; */
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  background-color: ivory;
+  /* background-image: url('./images/pexels-negative-space-33999-min.jpg'); */
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 100vw;
+  color: black;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+ul {
+  text-decoration: none;
 }
