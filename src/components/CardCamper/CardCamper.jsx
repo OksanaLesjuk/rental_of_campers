@@ -4,7 +4,7 @@ import GradeIcon from '@mui/icons-material/Grade';
 import FmdGoodOutlinedIcon from '@mui/icons-material/FmdGoodOutlined';
 
 import ListItemText from '@mui/material/ListItemText';
-import ListItemAvatar from '@mui/material/ListItemAvatar';
+// import ListItemAvatar from '@mui/material/ListItemAvatar';
 // import Avatar from '@mui/material/Avatar';
 import ImageIcon from '@mui/icons-material/Image';
 import Button from '@mui/material/Button';
@@ -13,7 +13,9 @@ import ScatterPlotOutlinedIcon from '@mui/icons-material/ScatterPlotOutlined';
 import BedOutlinedIcon from '@mui/icons-material/BedOutlined';
 import RestaurantRoundedIcon from '@mui/icons-material/RestaurantRounded';
 import AirRoundedIcon from '@mui/icons-material/AirRounded';
+import Avatar from '@mui/material/Avatar';
 import {
+  AvatarSt,
   AvatarWrap,
   Card,
   CardHeader,
@@ -26,86 +28,134 @@ import {
   PropertiesList,
   PropertiesListItem,
 } from './CardCamper.styled';
+import { useEffect } from 'react';
+import { capitalizeFirstLetter } from 'helpers/firstLetter';
 
-const CardCamper = () => {
+const CardCamper = ({ advert }) => {
+  const image = advert.gallery[0];
+  useEffect(() => {
+    console.log(advert);
+    console.log(image);
+  }, [advert]);
   return (
     <Card>
       <ImgCardBox>
-        <img src="" alt="" />
+        <img src={image} alt={advert.name} />
       </ImgCardBox>
       <div>
         <CardHeader>
-          <h3>Furgon</h3>
+          <h3>{advert.name}</h3>
           <PriceBox>
-            <p>$ 5000.00</p>
+            <p>$ {advert.price.toFixed(2)}</p>
             <FavoriteBorderIcon />
           </PriceBox>
         </CardHeader>
         <GradeBox>
           <Grade>
             <GradeIcon />
-            <p>raiting</p>
+            <p>{advert.raiting}</p>
           </Grade>
           <Location>
             <FmdGoodOutlinedIcon />
-            <p>Stryi, Ukraine</p>
+            <p>{advert.location}</p>
           </Location>
         </GradeBox>
-        <CardInfo>
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nulla
-          laboriosam blanditiis illo dolorum assumenda, numquam suscipit vitae
-          tempore ipsum repellat a modi facere quam quasi. Distinctio inventore
-          quae alias eaque.
-        </CardInfo>
+        <CardInfo>{advert.description}</CardInfo>
         <PropertiesList>
           <PropertiesListItem>
-            <ListItemAvatar>
-              <AvatarWrap>
-                <GroupOutlinedIcon />
-              </AvatarWrap>
-            </ListItemAvatar>
-            <ListItemText primary="2 adults" />
+            <AvatarWrap style={{ minWidth: '20px' }}>
+              <Avatar
+                style={{
+                  background: 'transparent',
+                  width: '20px',
+                  height: '20px',
+                }}
+              >
+                <GroupOutlinedIcon style={{ fill: '#101828' }} />
+              </Avatar>
+            </AvatarWrap>
+            <ListItemText
+              primary={`${advert.adults > 0 ? `${advert.adults} adults` : ''}${
+                advert.children > 0 ? `, ${advert.children} children` : ''
+              }`}
+            />
           </PropertiesListItem>
           <PropertiesListItem>
-            <ListItemAvatar>
-              <AvatarWrap>
-                <ScatterPlotOutlinedIcon />
-              </AvatarWrap>
-            </ListItemAvatar>
-            <ListItemText primary="Automatic" />
+            <AvatarWrap style={{ minWidth: '20px' }}>
+              <Avatar
+                style={{
+                  background: 'transparent',
+                  width: '20px',
+                  height: '20px',
+                }}
+              >
+                <ScatterPlotOutlinedIcon style={{ fill: '#101828' }} />
+              </Avatar>
+            </AvatarWrap>
+            <ListItemText
+              primary={capitalizeFirstLetter(advert.transmission)}
+            />
           </PropertiesListItem>
           <PropertiesListItem>
-            <ListItemAvatar>
-              <AvatarWrap>
-                <ImageIcon />
-              </AvatarWrap>
-            </ListItemAvatar>
-            <ListItemText primary="petrol" />
+            <AvatarWrap style={{ minWidth: '20px' }}>
+              <Avatar
+                style={{
+                  background: 'transparent',
+                  width: '20px',
+                  height: '20px',
+                }}
+              >
+                <ImageIcon style={{ fill: '#101828' }} />
+              </Avatar>
+            </AvatarWrap>
+            <ListItemText primary={capitalizeFirstLetter(advert.engine)} />
           </PropertiesListItem>
+          {advert.details.kitchen !== 0 && (
+            <PropertiesListItem>
+              <AvatarWrap style={{ minWidth: '20px' }}>
+                <Avatar
+                  style={{
+                    background: 'transparent',
+                    width: '20px',
+                    height: '20px',
+                  }}
+                >
+                  <RestaurantRoundedIcon style={{ fill: '#101828' }} />
+                </Avatar>
+              </AvatarWrap>
+              <ListItemText primary="Kitchen" />
+            </PropertiesListItem>
+          )}
           <PropertiesListItem>
-            <ListItemAvatar>
-              <AvatarWrap>
-                <RestaurantRoundedIcon />
-              </AvatarWrap>
-            </ListItemAvatar>
-            <ListItemText primary="Kitchen" />
+            <AvatarWrap style={{ minWidth: '20px' }}>
+              <Avatar
+                style={{
+                  background: 'transparent',
+                  width: '20px',
+                  height: '20px',
+                }}
+              >
+                <BedOutlinedIcon style={{ fill: '#101828' }} />
+              </Avatar>
+            </AvatarWrap>
+            <ListItemText primary={`${advert.details.beds} beds`} />
           </PropertiesListItem>
-          <PropertiesListItem>
-            <ListItemAvatar>
-              <AvatarWrap>
-                <BedOutlinedIcon />
+          {advert.details.airConditioner !== 0 && (
+            <PropertiesListItem>
+              <AvatarWrap style={{ minWidth: '20px' }}>
+                <Avatar
+                  style={{
+                    background: 'transparent',
+                    width: '20px',
+                    height: '20px',
+                  }}
+                >
+                  <AirRoundedIcon style={{ fill: '#101828' }} />
+                </Avatar>
               </AvatarWrap>
-            </ListItemAvatar>
-            <ListItemText primary="1 beds" />
-          </PropertiesListItem>
-          <PropertiesListItem>
-            <ListItemAvatar>
-              <AvatarWrap>
-                <AirRoundedIcon />
-              </AvatarWrap>
-            </ListItemAvatar>
-            <ListItemText primary="AC" />
-          </PropertiesListItem>
+              <ListItemText primary="AC" />
+            </PropertiesListItem>
+          )}
         </PropertiesList>
         <Button variant="contained">Show more</Button>
       </div>

@@ -1,6 +1,7 @@
 import styled from "styled-components";
 // import List from '@mui/material/List';
 // import ListItem from '@mui/material/ListItem';
+import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Avatar from '@mui/material/Avatar';
 
 const Card = styled.div`
@@ -48,17 +49,33 @@ gap:8px;
 padding: 0;
 `
 const PropertiesListItem = styled.li`
-max-width: 114px;
+padding: 12px 18px;
+align-items: center;
 height: 44px;
 display: flex;
 gap:8px;
+border-radius: 100px;
+background: #F2F4F7;
+mix-blend-mode: multiply;
 
 `
-const AvatarWrap = styled(Avatar)`
-min-width:20px;`
+
+const AvatarWrap = styled(ListItemAvatar)`
+min-width:20px;
+`
+const AvatarSt = styled(Avatar)`
+width: 20px;
+height: 20px;
+background-color:transparent;
+fill:darkgray;
+`
 
 const CardInfo = styled.p`
-display:block`
+display:block;
+max-width: 525px;
+white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;`
 
 export {
     Card,
@@ -71,5 +88,6 @@ export {
     PropertiesList,
     PropertiesListItem,
     CardInfo,
-    AvatarWrap
+    AvatarWrap,
+    AvatarSt
 }
