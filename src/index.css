@@ -17,6 +17,7 @@ body {
   background-position: center;
   height: 100vw;
   color: black;
+  overflow: hidden;
 }
 
 h1,

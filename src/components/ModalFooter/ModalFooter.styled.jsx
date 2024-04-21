@@ -10,17 +10,6 @@ const showBackdrop = keyframes`
 opacity: 1;
 }`;
 
-// const hiddenBackdrop = keyframes`
-// 0% {
-//   opacity: 1;
-//   transform: translateY(0);
-// }
-
-// 100% {
-//   opacity: 0;
-// transform: translateY(200px);
-// `;
-
 const showModal = keyframes`
 0% {
   opacity: 0;
@@ -29,7 +18,7 @@ const showModal = keyframes`
 
 100% {
   opacity: 1;
-transform: translateY(0px);
+transform: translateY(0px);}
 `;
 
 export const BackdropWrapper = styled.div`
@@ -53,12 +42,12 @@ export const BackdropWrapper = styled.div`
 
 export const ModalWrapper = styled.div`
   position: relative;
-  overflow: ${p => (p.$overflow ? p.$overflow : 'hidden')};
-  overflow-x: hidden;
-
+  /* overflow: ${p => (p.$overflow ? p.$overflow : 'hidden')}; */
+  /* overflow-x: hidden; */
+  overflow-y: scroll;
   margin: auto;
   height: auto;
-  padding: 32px 12px 32px 12px;
+  padding: 40px;
   border-radius: 10px;
   background-color: #f7f7f7;
   animation: ${showModal} 0.5s ease-out;

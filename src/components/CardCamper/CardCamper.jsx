@@ -40,10 +40,10 @@ const CardCamper = ({ advert }) => {
   //   console.log(advert);
   // }, [advert]);
 
-  const handleShowMore = id => {
+  const handleShowMore = () => {
     openModal(
       <>
-        <ShowMoreModal id={id} />
+        <ShowMoreModal id={advert.id} />
       </>
     );
   };
