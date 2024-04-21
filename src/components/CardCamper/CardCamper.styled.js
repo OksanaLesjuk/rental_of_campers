@@ -13,9 +13,16 @@ padding: 24px;
 margin: 0;
 `
 const ImgCardBox = styled.div`
-min-width:290px;
+width:290px;
 height:310px;
-background-color:blue;`
+background-color:blue;
+overflow: hidden;
+img{
+  width: 100%;
+    height: 100%;
+  object-fit: cover;
+}
+`
 
 const CardHeader = styled.div`
 display:flex;
@@ -78,16 +85,16 @@ white-space: nowrap;
   text-overflow: ellipsis;`
 
 export {
-    Card,
-    ImgCardBox,
-    CardHeader,
-    PriceBox,
-    GradeBox,
-    Grade,
-    Location,
-    PropertiesList,
-    PropertiesListItem,
-    CardInfo,
-    AvatarWrap,
-    AvatarSt
+  Card,
+  ImgCardBox,
+  CardHeader,
+  PriceBox,
+  GradeBox,
+  Grade,
+  Location,
+  PropertiesList,
+  PropertiesListItem,
+  CardInfo,
+  AvatarWrap,
+  AvatarSt
 }

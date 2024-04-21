@@ -28,15 +28,25 @@ import {
   PropertiesList,
   PropertiesListItem,
 } from './CardCamper.styled';
-import { useEffect } from 'react';
+import { useContext, useEffect } from 'react';
 import { capitalizeFirstLetter } from 'helpers/firstLetter';
+import { ModalContext } from 'context/ModalContext/ModalContext';
+import ShowMoreModal from 'components/ShowMoreModal/ShowMoreModal';
 
 const CardCamper = ({ advert }) => {
+  const { openModal } = useContext(ModalContext);
   const image = advert.gallery[0];
-  useEffect(() => {
-    console.log(advert);
-    console.log(image);
-  }, [advert]);
+  // useEffect(() => {
+  //   console.log(advert);
+  // }, [advert]);
+
+  const handleShowMore = id => {
+    openModal(
+      <>
+        <ShowMoreModal id={id} />
+      </>
+    );
+  };
   return (
     <Card>
       <ImgCardBox>
@@ -157,7 +167,9 @@ const CardCamper = ({ advert }) => {
             </PropertiesListItem>
           )}
         </PropertiesList>
-        <Button variant="contained">Show more</Button>
+        <Button variant="contained" onClick={handleShowMore}>
+          Show more
+        </Button>
       </div>
     </Card>
   );
