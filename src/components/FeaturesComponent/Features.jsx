@@ -1,5 +1,9 @@
 import React, { useEffect } from 'react';
-import { Characteristics, FeatureBox } from './FeaturesComponent.styled';
+import {
+  Characteristics,
+  FeatureBox,
+  LiWrapBottom,
+} from './FeaturesComponent.styled';
 
 const Features = ({ advert }) => {
   const getIcon = characteristic => {
@@ -49,6 +53,33 @@ const Features = ({ advert }) => {
           </div>
         ))}
       </Characteristics>
+      <h4>Vehicle details</h4>
+      <ul>
+        <LiWrapBottom>
+          <p>Form</p>
+          <p>{advert.form}</p>
+        </LiWrapBottom>
+        <LiWrapBottom>
+          <p>Length</p>
+          <p>{advert.length}</p>
+        </LiWrapBottom>
+        <LiWrapBottom>
+          <p>Width</p>
+          <p>{advert.width}</p>
+        </LiWrapBottom>
+        <LiWrapBottom>
+          <p>Height</p>
+          <p>{advert.height}</p>
+        </LiWrapBottom>
+        <LiWrapBottom>
+          <p>Tank</p>
+          <p>{advert.tank}</p>
+        </LiWrapBottom>
+        <LiWrapBottom>
+          <p>Consumption</p>
+          <p>{advert.consumption}</p>
+        </LiWrapBottom>
+      </ul>
     </FeatureBox>
   );
 };

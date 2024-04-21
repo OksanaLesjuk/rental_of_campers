@@ -42,8 +42,8 @@ export const BackdropWrapper = styled.div`
 
 export const ModalWrapper = styled.div`
   position: relative;
-  /* overflow: ${p => (p.$overflow ? p.$overflow : 'hidden')}; */
-  /* overflow-x: hidden; */
+  overflow: ${p => (p.$overflow ? p.$overflow : 'hidden')};
+  overflow-x: hidden;
   overflow-y: scroll;
   margin: auto;
   height: auto;
@@ -62,7 +62,7 @@ export const ModalWrapper = styled.div`
   }
 
   &::-webkit-scrollbar-thumb:hover {
-    background-color: #555; /* Колір скролу при наведенні */
+    background-color: #555;
   }
 `;
 

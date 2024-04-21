@@ -13,8 +13,13 @@ const Characteristics = styled.div`
 display:flex;
 flex-wrap:wrap;
 gap:8px;`
+
+const LiWrapBottom = styled.li`
+display:flex;
+justify-content:space-between;`
 export {
     FeaturesBox,
     FeatureBox,
-    Characteristics
+    Characteristics,
+    LiWrapBottom
 }
