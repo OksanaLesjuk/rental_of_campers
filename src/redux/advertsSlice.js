@@ -13,8 +13,21 @@ const advertsSlice = createSlice({
     name: 'adverts',
     initialState: {
         adverts: [],
+        favorites: [],
+
         isLoading: false,
         error: null,
+    },
+    reducers: {
+        toggleFavorite: (state, action) => {
+            const advertId = action.payload;
+            const index = state.favorites.findIndex(id => id === advertId);
+            if (index === -1) {
+                state.favorites.push(advertId);
+            } else {
+                state.favorites = state.favorites.filter(id => id !== advertId);
+            }
+        },
     },
     extraReducers: (builder) => {
         builder
@@ -28,5 +41,5 @@ const advertsSlice = createSlice({
     }
 })
 
-
+export const { toggleFavorite } = advertsSlice.actions;
 export const advertsReducer = advertsSlice.reducer;

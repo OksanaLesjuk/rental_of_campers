@@ -1,9 +1,14 @@
 import React from 'react';
+import IconButton from '@mui/material/IconButton';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 
 import { Stack, Typography, useTheme } from '@mui/material';
+import { Link } from 'react-router-dom/dist';
 
 const Header = () => {
   const theme = useTheme();
+
+  const handleFavoriteBtn = () => {};
 
   return (
     <Stack
@@ -26,6 +31,9 @@ const Header = () => {
       >
         Rental of campers
       </Typography>
+      <Link to="/favorite" style={{ textDecoration: 'none', color: 'inherit' }}>
+        <FavoriteBorderIcon style={{ fontSize: '2rem', color: 'black' }} />
+      </Link>
     </Stack>
   );
 };

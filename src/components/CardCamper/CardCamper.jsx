@@ -1,4 +1,4 @@
-// import FavoriteIcon from '@mui/icons-material/Favorite';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import GradeIcon from '@mui/icons-material/Grade';
 import FmdGoodOutlinedIcon from '@mui/icons-material/FmdGoodOutlined';
@@ -6,6 +6,7 @@ import FmdGoodOutlinedIcon from '@mui/icons-material/FmdGoodOutlined';
 import ListItemText from '@mui/material/ListItemText';
 // import ListItemAvatar from '@mui/material/ListItemAvatar';
 // import Avatar from '@mui/material/Avatar';
+import IconButton from '@mui/material/IconButton';
 import ImageIcon from '@mui/icons-material/Image';
 import Button from '@mui/material/Button';
 import GroupOutlinedIcon from '@mui/icons-material/GroupOutlined';
@@ -27,17 +28,24 @@ import {
   PropertiesList,
   PropertiesListItem,
 } from './CardCamper.styled';
-import { useContext } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import { capitalizeFirstLetter } from 'helpers/firstLetter';
 import { ModalContext } from 'context/ModalContext/ModalContext';
 import ShowMoreModal from 'components/ShowMoreModal/ShowMoreModal';
+import { toggleFavorite } from '../../redux/advertsSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { getAdverts } from '../../redux/selectors';
 
 const CardCamper = ({ advert }) => {
+  const { favorites } = useSelector(getAdverts);
   const { openModal } = useContext(ModalContext);
+  const [isFavorite, setIsFavorite] = useState(false);
+  const dispatch = useDispatch();
   const image = advert.gallery[0];
-  // useEffect(() => {
-  //   console.log(advert);
-  // }, [advert]);
+  useEffect(() => {
+    setIsFavorite(favorites.includes(advert.id));
+    console.log(favorites);
+  }, [favorites, advert.id]);
 
   const handleShowMore = () => {
     openModal(
@@ -45,6 +53,11 @@ const CardCamper = ({ advert }) => {
         <ShowMoreModal id={advert.id} />
       </>
     );
+  };
+
+  const toggleFavoriteBtn = () => {
+    dispatch(toggleFavorite(advert.id));
+    setIsFavorite(prevState => !prevState);
   };
   return (
     <Card>
@@ -56,7 +69,9 @@ const CardCamper = ({ advert }) => {
           <h3>{advert.name}</h3>
           <PriceBox>
             <p>$ {advert.price.toFixed(2)}</p>
-            <FavoriteBorderIcon />
+            <IconButton aria-label="favorite" onClick={toggleFavoriteBtn}>
+              {isFavorite ? <FavoriteIcon /> : <FavoriteBorderIcon />}
+            </IconButton>
           </PriceBox>
         </CardHeader>
         <GradeBox>
