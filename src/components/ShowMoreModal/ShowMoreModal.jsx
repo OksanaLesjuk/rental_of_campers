@@ -52,12 +52,8 @@ const ShowMoreModal = ({ id }) => {
         </ModalGallery>
         <p>{advert.description}</p>
 
-        <button onClick={() => handleTabChange('features')} advert={advert}>
-          Features
-        </button>
-        <button onClick={() => handleTabChange('reviews')} advert={advert}>
-          Reviews
-        </button>
+        <button onClick={() => handleTabChange('features')}>Features</button>
+        <button onClick={() => handleTabChange('reviews')}>Reviews</button>
 
         {modalContent}
       </ShowMoreModalBox>
