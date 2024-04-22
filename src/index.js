@@ -10,7 +10,7 @@ import { ModalProvider } from 'context/ModalContext/ModalContext';
 // import { ThemeProvider } from 'styled-components';
 // import { theme } from 'styles';
 
-ReactDOM.render(document.getElementById('root')).render(
+ReactDOM.createRoot(document.getElementById('root')).render(
 
 
   <Provider store={store}>
