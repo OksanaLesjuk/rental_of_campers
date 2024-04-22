@@ -1,14 +1,14 @@
 import CardCamper from 'components/CardCamper/CardCamper';
 import { GalleryBox } from './Gallery.styled';
-import { useSelector } from 'react-redux';
-import { getAdverts } from '../../redux/selectors';
+import { useEffect } from 'react';
 
-const Gallery = () => {
-  const { adverts } = useSelector(getAdverts);
-
+const Gallery = ({ data }) => {
+  useEffect(() => {
+    console.log(data);
+  });
   return (
     <GalleryBox>
-      {adverts.map(advert => (
+      {data.map(advert => (
         <CardCamper advert={advert} key={advert.id} />
       ))}
     </GalleryBox>

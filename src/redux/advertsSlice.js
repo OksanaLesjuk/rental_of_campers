@@ -8,7 +8,7 @@ const handleRejected = (state, action) => {
     state.isLoading = false;
     state.error = action.payload;
 };
-
+const storedFavorites = JSON.parse(localStorage.getItem('favorites')) || [];
 const advertsSlice = createSlice({
     name: 'adverts',
     initialState: {
@@ -20,19 +20,37 @@ const advertsSlice = createSlice({
     },
     reducers: {
         toggleFavorite: (state, action) => {
-            const advertId = action.payload;
-            const index = state.favorites.findIndex(id => id === advertId);
+            const { advert } = action.payload;
+
+            const index = state.favorites.findIndex(item => item.id === advert.id);
             if (index === -1) {
-                state.favorites.push(advertId);
+                state.favorites.push(advert); // Додати новий об'єкт до масиву favorites
+                state.adverts = state.adverts.map(ad => {
+                    if (ad.id === advert.id) {
+                        return { ...ad, isFavorite: true };
+                    }
+                    return ad;
+                });
             } else {
-                state.favorites = state.favorites.filter(id => id !== advertId);
+                // Якщо об'єкт вже є у favorites, видалити його з масиву
+                state.favorites = state.favorites.filter(item => item.id !== advert.id);
+                state.adverts = state.adverts.map(ad => {
+                    if (ad.id === advert.id) {
+                        return { ...ad, isFavorite: false };
+                    }
+                    return ad;
+                });
             }
+            // Оновлення улюблених у localStorage
+            localStorage.setItem('favorites', JSON.stringify(state.favorites));
         },
     },
     extraReducers: (builder) => {
         builder
             .addCase(getAdverts.fulfilled, (state, action) => {
-                state.adverts = action.payload;
+                state.adverts = action.payload.map(ad => {
+                    return { ...ad, isFavorite: state.favorites.some(fav => fav.id === ad.id) };
+                });
                 state.isLoading = false;
                 state.error = null;
             })
