@@ -15,7 +15,6 @@ import RestaurantRoundedIcon from '@mui/icons-material/RestaurantRounded';
 import AirRoundedIcon from '@mui/icons-material/AirRounded';
 import Avatar from '@mui/material/Avatar';
 import {
-  AvatarSt,
   AvatarWrap,
   Card,
   CardHeader,
@@ -28,7 +27,7 @@ import {
   PropertiesList,
   PropertiesListItem,
 } from './CardCamper.styled';
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 import { capitalizeFirstLetter } from 'helpers/firstLetter';
 import { ModalContext } from 'context/ModalContext/ModalContext';
 import ShowMoreModal from 'components/ShowMoreModal/ShowMoreModal';
