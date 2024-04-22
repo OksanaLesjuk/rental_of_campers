@@ -9,12 +9,12 @@ import FeaturesComponent from 'components/FeaturesComponent/FeaturesComponent';
 import ReviewsComponent from 'components/ReviewsComponent/ReviewsComponent';
 
 const ShowMoreModal = ({ id }) => {
-  const [setSelectedTab] = useState('');
+  const [SelectedTab, setSelectedTab] = useState('');
   const [modalContent, setModalContent] = useState('');
   const { adverts } = useSelector(getAdverts);
   const advert = adverts.find(advert => advert.id === id);
   useEffect(() => {
-    console.log(advert);
+    console.log(SelectedTab);
   });
   const handleTabChange = tab => {
     setSelectedTab(tab);
