@@ -11,9 +11,7 @@ const CatalogPage = () => {
   useEffect(() => {
     localStorage.clear();
     dispatch(getAdverts());
-
-    console.log('favorites', favorites);
-  }, [dispatch, favorites]);
+  }, [dispatch]);
 
   return (
     <>

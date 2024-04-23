@@ -8,7 +8,7 @@ const handleRejected = (state, action) => {
     state.isLoading = false;
     state.error = action.payload;
 };
-const storedFavorites = JSON.parse(localStorage.getItem('favorites')) || [];
+
 const advertsSlice = createSlice({
     name: 'adverts',
     initialState: {
@@ -24,23 +24,22 @@ const advertsSlice = createSlice({
 
             const index = state.favorites.findIndex(item => item.id === advert.id);
             if (index === -1) {
-                state.favorites.push(advert); // Додати новий об'єкт до масиву favorites
-                state.adverts = state.adverts.map(ad => {
-                    if (ad.id === advert.id) {
-                        return { ...ad, isFavorite: true };
-                    }
-                    return ad;
-                });
+                // Додати новий об'єкт до масиву favorites
+                state.favorites.push({ ...advert, isFavorite: true });
+
             } else {
                 // Якщо об'єкт вже є у favorites, видалити його з масиву
                 state.favorites = state.favorites.filter(item => item.id !== advert.id);
-                state.adverts = state.adverts.map(ad => {
-                    if (ad.id === advert.id) {
-                        return { ...ad, isFavorite: false };
-                    }
-                    return ad;
-                });
             }
+
+            // Оновити статус isFavorite для всіх об'єктів у adverts
+            state.adverts = state.adverts.map(ad => {
+                if (ad.id === advert.id) {
+                    return { ...ad, isFavorite: !state.favorites.some(fav => fav.id === ad.id) };
+                }
+                return ad;
+            });
+
             // Оновлення улюблених у localStorage
             localStorage.setItem('favorites', JSON.stringify(state.favorites));
         },

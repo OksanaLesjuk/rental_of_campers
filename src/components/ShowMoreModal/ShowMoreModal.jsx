@@ -1,5 +1,10 @@
 import { useEffect, useState } from 'react';
-import { ModalGallery, ShowMoreModalBox } from './ShowMoreModal.styled';
+import {
+  BtnsWrap,
+  ModalGallery,
+  RatingWrap,
+  ShowMoreModalBox,
+} from './ShowMoreModal.styled';
 import { useSelector } from 'react-redux';
 import { getAdverts } from '../../redux/selectors';
 
@@ -31,10 +36,10 @@ const ShowMoreModal = ({ id }) => {
         <h3>{advert.name}</h3>
 
         <div>
-          <div>
+          <RatingWrap>
             <GradeIcon />
             <p>{advert.rating}</p>
-          </div>
+          </RatingWrap>
           <div>
             <FmdGoodOutlinedIcon />
             <p>{advert.location}</p>
@@ -52,8 +57,10 @@ const ShowMoreModal = ({ id }) => {
         </ModalGallery>
         <p>{advert.description}</p>
 
-        <button onClick={() => handleTabChange('features')}>Features</button>
-        <button onClick={() => handleTabChange('reviews')}>Reviews</button>
+        <BtnsWrap>
+          <button onClick={() => handleTabChange('features')}>Features</button>
+          <button onClick={() => handleTabChange('reviews')}>Reviews</button>
+        </BtnsWrap>
 
         {modalContent}
       </ShowMoreModalBox>

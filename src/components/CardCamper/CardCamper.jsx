@@ -2,7 +2,8 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import GradeIcon from '@mui/icons-material/Grade';
 import FmdGoodOutlinedIcon from '@mui/icons-material/FmdGoodOutlined';
-import ListItemText from '@mui/material/ListItemText';
+import EuroIcon from '@mui/icons-material/Euro';
+
 import IconButton from '@mui/material/IconButton';
 import ImageIcon from '@mui/icons-material/Image';
 import Button from '@mui/material/Button';
@@ -15,8 +16,10 @@ import Avatar from '@mui/material/Avatar';
 import {
   AvatarWrap,
   Card,
+  CardBtn,
   CardHeader,
   CardInfo,
+  CustomListText,
   Grade,
   GradeBox,
   ImgCardBox,
@@ -34,13 +37,15 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getAdverts } from '../../redux/selectors';
 
 const CardCamper = ({ advert }) => {
-  const { favorites } = useSelector(getAdverts);
+  const [status, setStatus] = useState(advert.isFavorite);
   const { openModal } = useContext(ModalContext);
-  // const [isFavorite, setIsFavorite] = useState(false);
+
   const dispatch = useDispatch();
-  const isFavorite = useSelector(state =>
-    state.adverts.favorites.includes(advert.id)
-  );
+
+  useEffect(() => {
+    setStatus(advert.isFavorite);
+    console.log(advert.rating);
+  }, [advert.isFavorite]);
 
   const image = advert.gallery[0];
 
@@ -53,8 +58,8 @@ const CardCamper = ({ advert }) => {
   };
 
   const toggleFavoriteBtn = () => {
-    console.log(advert);
     dispatch(toggleFavorite({ advert }));
+    setStatus(!status);
   };
   return (
     <Card>
@@ -65,16 +70,19 @@ const CardCamper = ({ advert }) => {
         <CardHeader>
           <h3>{advert.name}</h3>
           <PriceBox>
-            <p>$ {advert.price.toFixed(2)}</p>
+            <EuroIcon />
+            <p>{advert.price.toFixed(2)}</p>
             <IconButton aria-label="favorite" onClick={toggleFavoriteBtn}>
-              {isFavorite ? <FavoriteIcon /> : <FavoriteBorderIcon />}
+              {status ? <FavoriteIcon /> : <FavoriteBorderIcon />}
             </IconButton>
           </PriceBox>
         </CardHeader>
         <GradeBox>
           <Grade>
             <GradeIcon />
-            <p>{advert.raiting}</p>
+            <p>
+              {advert.rating}({advert.reviews.length} Reviews)
+            </p>
           </Grade>
           <Location>
             <FmdGoodOutlinedIcon />
@@ -95,7 +103,7 @@ const CardCamper = ({ advert }) => {
                 <GroupOutlinedIcon style={{ fill: '#101828' }} />
               </Avatar>
             </AvatarWrap>
-            <ListItemText
+            <CustomListText
               primary={`${advert.adults > 0 ? `${advert.adults} adults` : ''}${
                 advert.children > 0 ? `, ${advert.children} children` : ''
               }`}
@@ -113,7 +121,7 @@ const CardCamper = ({ advert }) => {
                 <ScatterPlotOutlinedIcon style={{ fill: '#101828' }} />
               </Avatar>
             </AvatarWrap>
-            <ListItemText
+            <CustomListText
               primary={capitalizeFirstLetter(advert.transmission)}
             />
           </PropertiesListItem>
@@ -129,7 +137,7 @@ const CardCamper = ({ advert }) => {
                 <ImageIcon style={{ fill: '#101828' }} />
               </Avatar>
             </AvatarWrap>
-            <ListItemText primary={capitalizeFirstLetter(advert.engine)} />
+            <CustomListText primary={capitalizeFirstLetter(advert.engine)} />
           </PropertiesListItem>
           {advert.details.kitchen !== 0 && (
             <PropertiesListItem>
@@ -144,7 +152,7 @@ const CardCamper = ({ advert }) => {
                   <RestaurantRoundedIcon style={{ fill: '#101828' }} />
                 </Avatar>
               </AvatarWrap>
-              <ListItemText primary="Kitchen" />
+              <CustomListText primary="Kitchen" />
             </PropertiesListItem>
           )}
           <PropertiesListItem>
@@ -159,7 +167,7 @@ const CardCamper = ({ advert }) => {
                 <BedOutlinedIcon style={{ fill: '#101828' }} />
               </Avatar>
             </AvatarWrap>
-            <ListItemText primary={`${advert.details.beds} beds`} />
+            <CustomListText primary={`${advert.details.beds} beds`} />
           </PropertiesListItem>
           {advert.details.airConditioner !== 0 && (
             <PropertiesListItem>
@@ -174,13 +182,13 @@ const CardCamper = ({ advert }) => {
                   <AirRoundedIcon style={{ fill: '#101828' }} />
                 </Avatar>
               </AvatarWrap>
-              <ListItemText primary="AC" />
+              <CustomListText primary="AC" />
             </PropertiesListItem>
           )}
         </PropertiesList>
-        <Button variant="contained" onClick={handleShowMore}>
+        <CardBtn variant="contained" onClick={handleShowMore}>
           Show more
-        </Button>
+        </CardBtn>
       </div>
     </Card>
   );

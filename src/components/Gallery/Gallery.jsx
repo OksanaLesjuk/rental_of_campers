@@ -3,9 +3,6 @@ import { GalleryBox } from './Gallery.styled';
 import { useEffect } from 'react';
 
 const Gallery = ({ data }) => {
-  useEffect(() => {
-    console.log(data);
-  });
   return (
     <GalleryBox>
       {data.map(advert => (

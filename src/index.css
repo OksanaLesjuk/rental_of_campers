@@ -10,7 +10,7 @@ body {
   font-family: 'Roboto', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-
+  background-color: rgba(243, 241, 227, 0.5);
   /* background-image: url('./images/pexels-negative-space-33999-min.jpg'); */
   background-size: cover;
   background-repeat: no-repeat;
@@ -27,7 +27,7 @@ h4,
 h5,
 h6,
 p {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Inter', sans-serif;
   margin: 0px;
   padding: 0px;
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import IconButton from '@mui/material/IconButton';
+import HomeIcon from '@mui/icons-material/Home';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 
 import { Stack, Typography, useTheme } from '@mui/material';
@@ -16,9 +16,9 @@ const Header = () => {
       alignItems="center"
       justifyContent="space-between"
       flexWrap="wrap"
-      marginBottom="60px"
+      marginBottom="26px"
       sx={{
-        borderBottom: '2px solid darkblue',
+        borderBottom: '2px solid #101828',
       }}
     >
       <Typography
@@ -29,7 +29,9 @@ const Header = () => {
           fontSize: theme.breakpoints.down('sm') ? '60px' : '70px',
         }}
       >
-        Rental of campers
+        <Link to="/">
+          <HomeIcon fontSize="large" style={{ fill: '#E44848' }} />
+        </Link>
       </Typography>
       <Link to="/favorite" style={{ textDecoration: 'none', color: 'inherit' }}>
         <FavoriteBorderIcon style={{ fontSize: '2rem', color: 'black' }} />
