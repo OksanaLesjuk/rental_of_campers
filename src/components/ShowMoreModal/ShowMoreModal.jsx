@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import {
   BtnModal,
   BtnsWrap,
@@ -19,28 +19,36 @@ import GradeIcon from '@mui/icons-material/Grade';
 import FmdGoodOutlinedIcon from '@mui/icons-material/FmdGoodOutlined';
 import FeaturesComponent from 'components/FeaturesComponent/FeaturesComponent';
 import ReviewsComponent from 'components/ReviewsComponent/ReviewsComponent';
-import EuroIcon from '@mui/icons-material/Euro';
 
 const ShowMoreModal = ({ id }) => {
   const [SelectedTab, setSelectedTab] = useState('features');
   const [modalContent, setModalContent] = useState('');
   const { adverts } = useSelector(getAdverts);
   const advert = adverts.find(advert => advert.id === id);
-  useEffect(() => {
-    console.log(SelectedTab);
-  });
-  const handleTabChange = tab => {
-    setSelectedTab(tab);
-    if (tab === 'features') {
-      setModalContent(<FeaturesComponent advert={advert} />);
-    } else if (tab === 'reviews') {
-      setModalContent(<ReviewsComponent advert={advert} />);
-    }
-  };
+
+  // const handleTabChange = tab => {
+  //   setSelectedTab(tab);
+  //   if (tab === 'features') {
+  //     setModalContent(<FeaturesComponent advert={advert} />);
+  //   } else if (tab === 'reviews') {
+  //     setModalContent(<ReviewsComponent advert={advert} />);
+  //   }
+  // };
+  const handleTabChange = useCallback(
+    tab => {
+      setSelectedTab(tab);
+      if (tab === 'features') {
+        setModalContent(<FeaturesComponent advert={advert} />);
+      } else if (tab === 'reviews') {
+        setModalContent(<ReviewsComponent advert={advert} />);
+      }
+    },
+    [advert]
+  );
 
   useEffect(() => {
     handleTabChange('features'); // Вибір вкладки за замовчуванням при завантаженні
-  }, []);
+  }, [handleTabChange]);
 
   return (
     <>

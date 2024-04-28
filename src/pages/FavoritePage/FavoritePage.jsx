@@ -1,5 +1,5 @@
 import Gallery from 'components/Gallery/Gallery';
-import React, { useEffect } from 'react';
+
 import { useSelector } from 'react-redux';
 import { getAdverts } from '../../redux/selectors';
 import { Link } from 'react-router-dom';
