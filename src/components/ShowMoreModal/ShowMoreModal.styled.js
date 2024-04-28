@@ -4,6 +4,7 @@ import styled, { css } from 'styled-components';
 const ShowMoreModalBox = styled.div`
 display: block;
 max-width:982px;
+background: #FFF;
 `
 
 const ModalTitle = styled.h3`

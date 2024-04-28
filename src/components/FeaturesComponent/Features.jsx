@@ -1,28 +1,32 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import {
+  Characteristic,
   Characteristics,
   FeatureBox,
   LiWrapBottom,
+  SvgFeatures,
+  TitleDetails,
+  UlDetails,
 } from './FeaturesComponent.styled';
+import iconsSprite from '../../images/icons_sprite.svg';
 
 const Features = ({ advert }) => {
   const getIcon = characteristic => {
     // Об'єкт з відповідностями характеристик та їх іконок
     const icons = {
-      airConditioner: 'air_conditioner_icon',
-      bathroom: 'bathroom_icon',
-      kitchen: 'kitchen_icon',
-      beds: 'beds_icon',
-      TV: 'TV_icon',
-      engine: 'engine_icon',
-      transmission: 'transmission_icon',
+      airConditioner: `${iconsSprite}#icon-air_conditioner`,
+      // bathroom: 'bathroom_icon',
+      // kitchen: 'kitchen_icon',
+      // beds: 'beds_icon',
+      // TV: 'TV_icon',
+      // engine: 'engine_icon',
+      // transmission: 'transmission_icon',
     };
     // Повертаємо іконку відповідно до характеристики
+    console.log(icons[characteristic]);
     return icons[characteristic] || 'not_available_icon';
   };
-  useEffect(() => {
-    console.log(advert);
-  });
+
   // Створення масиву об'єктів з властивістю, значенням та іконкою
   const characteristicArray = Object.entries(advert.details).map(
     ([characteristic, value]) => ({
@@ -41,20 +45,30 @@ const Features = ({ advert }) => {
     }
   );
 
+  useEffect(() => {
+    console.log(advert);
+    console.log(characteristicArray);
+  }, [characteristicArray]);
+
   return (
     <FeatureBox>
       <Characteristics>
-        {characteristicArray.map((item, index) => (
-          <div key={index}>
-            <img src={`/${item.icon}.png`} alt={item.characteristic} />
-            <p>
-              {item.characteristic}: {item.value}
-            </p>
-          </div>
-        ))}
+        {characteristicArray.map(
+          (item, index) =>
+            item.value !== 0 && ( // Перевірка, чи значення не дорівнює 0
+              <Characteristic key={index}>
+                <SvgFeatures>
+                  <use href={`#${item.icon}`} width="20" height="20" />
+                </SvgFeatures>
+                <p>
+                  {item.value} {item.characteristic}
+                </p>
+              </Characteristic>
+            )
+        )}
       </Characteristics>
-      <h4>Vehicle details</h4>
-      <ul>
+      <TitleDetails>Vehicle details</TitleDetails>
+      <UlDetails>
         <LiWrapBottom>
           <p>Form</p>
           <p>{advert.form}</p>
@@ -79,7 +93,7 @@ const Features = ({ advert }) => {
           <p>Consumption</p>
           <p>{advert.consumption}</p>
         </LiWrapBottom>
-      </ul>
+      </UlDetails>
     </FeatureBox>
   );
 };

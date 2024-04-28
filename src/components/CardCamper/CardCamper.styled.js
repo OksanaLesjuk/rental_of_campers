@@ -109,10 +109,7 @@ background-color:transparent;
 fill:darkgray;
 `
 const CustomListText = styled(ListItemText)`
-
-
 font-weight: 500;
-
 &&
 {
   margin-top:0;

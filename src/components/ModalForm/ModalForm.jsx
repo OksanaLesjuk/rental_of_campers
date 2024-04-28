@@ -6,8 +6,8 @@ import { Event } from '@mui/icons-material';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { StyledFormBox } from './ModalForm.styled';
-
+import { Form, StyledFormBox } from './ModalForm.styled';
+import Input from '@mui/material/Input';
 const ModalForm = () => {
   const [formData, setFormData] = useState({
     name: '',
@@ -48,14 +48,15 @@ const ModalForm = () => {
     <StyledFormBox>
       <h4>Book your campervan now</h4>
       <p>Stay connected! We are always ready to help you.</p>
-      <form onSubmit={handleSubmit}>
+      <Form onSubmit={handleSubmit}>
         <TextField
           name="name"
           label="Name"
           value={formData.name}
           onChange={handleChange}
           fullWidth
-          margin="normal"
+          variant="filled"
+          required
         />
         <TextField
           name="email"
@@ -63,7 +64,8 @@ const ModalForm = () => {
           value={formData.email}
           onChange={handleChange}
           fullWidth
-          margin="normal"
+          variant="filled"
+          required
         />
 
         <LocalizationProvider
@@ -76,8 +78,7 @@ const ModalForm = () => {
             value={formData.bookingDate}
             onChange={handleDateChange}
             fullWidth
-            margin="normal"
-            inputVariant="outlined"
+            inputVariant="filled"
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">
@@ -94,13 +95,14 @@ const ModalForm = () => {
           onChange={handleChange}
           fullWidth
           multiline
-          rows={4}
+          rows={6}
           margin="normal"
+          variant="filled"
         />
         <Button type="submit" variant="contained" color="primary">
           Send
         </Button>
-      </form>
+      </Form>
     </StyledFormBox>
   );
 };
