@@ -1,7 +1,14 @@
 import { useEffect, useState } from 'react';
 import {
+  BtnModal,
   BtnsWrap,
+  ModalDescription,
   ModalGallery,
+  ModalLocation,
+  ModalPrice,
+  ModalRating,
+  ModalSubtitle,
+  ModalTitle,
   RatingWrap,
   ShowMoreModalBox,
 } from './ShowMoreModal.styled';
@@ -12,9 +19,10 @@ import GradeIcon from '@mui/icons-material/Grade';
 import FmdGoodOutlinedIcon from '@mui/icons-material/FmdGoodOutlined';
 import FeaturesComponent from 'components/FeaturesComponent/FeaturesComponent';
 import ReviewsComponent from 'components/ReviewsComponent/ReviewsComponent';
+import EuroIcon from '@mui/icons-material/Euro';
 
 const ShowMoreModal = ({ id }) => {
-  const [SelectedTab, setSelectedTab] = useState('');
+  const [SelectedTab, setSelectedTab] = useState('features');
   const [modalContent, setModalContent] = useState('');
   const { adverts } = useSelector(getAdverts);
   const advert = adverts.find(advert => advert.id === id);
@@ -30,23 +38,29 @@ const ShowMoreModal = ({ id }) => {
     }
   };
 
+  useEffect(() => {
+    handleTabChange('features'); // Вибір вкладки за замовчуванням при завантаженні
+  }, []);
+
   return (
     <>
       <ShowMoreModalBox>
-        <h3>{advert.name}</h3>
+        <ModalTitle>{advert.name}</ModalTitle>
 
-        <div>
+        <ModalSubtitle>
           <RatingWrap>
             <GradeIcon />
-            <p>{advert.rating}</p>
+            <ModalRating>
+              {advert.rating}({advert.reviews.length} Reviews)
+            </ModalRating>
           </RatingWrap>
-          <div>
+          <ModalLocation>
             <FmdGoodOutlinedIcon />
             <p>{advert.location}</p>
-          </div>
-        </div>
+          </ModalLocation>
+        </ModalSubtitle>
 
-        <p>$ {advert.price.toFixed(2)}</p>
+        <ModalPrice> &euro;{advert.price.toFixed(2)}</ModalPrice>
 
         <ModalGallery>
           {advert.gallery.map((image, index) => (
@@ -55,11 +69,21 @@ const ShowMoreModal = ({ id }) => {
             </div>
           ))}
         </ModalGallery>
-        <p>{advert.description}</p>
+        <ModalDescription>{advert.description}</ModalDescription>
 
         <BtnsWrap>
-          <button onClick={() => handleTabChange('features')}>Features</button>
-          <button onClick={() => handleTabChange('reviews')}>Reviews</button>
+          <BtnModal
+            isactive={SelectedTab === 'features' ? 'true' : 'false'}
+            onClick={() => handleTabChange('features')}
+          >
+            Features
+          </BtnModal>
+          <BtnModal
+            isactive={SelectedTab === 'reviews' ? 'true' : 'false'}
+            onClick={() => handleTabChange('reviews')}
+          >
+            Reviews
+          </BtnModal>
         </BtnsWrap>
 
         {modalContent}

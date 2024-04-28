@@ -3,10 +3,9 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import GradeIcon from '@mui/icons-material/Grade';
 import FmdGoodOutlinedIcon from '@mui/icons-material/FmdGoodOutlined';
 import EuroIcon from '@mui/icons-material/Euro';
-
 import IconButton from '@mui/material/IconButton';
 import ImageIcon from '@mui/icons-material/Image';
-import Button from '@mui/material/Button';
+
 import GroupOutlinedIcon from '@mui/icons-material/GroupOutlined';
 import ScatterPlotOutlinedIcon from '@mui/icons-material/ScatterPlotOutlined';
 import BedOutlinedIcon from '@mui/icons-material/BedOutlined';
@@ -70,8 +69,7 @@ const CardCamper = ({ advert }) => {
         <CardHeader>
           <h3>{advert.name}</h3>
           <PriceBox>
-            <EuroIcon />
-            <p>{advert.price.toFixed(2)}</p>
+            <p> &euro;{advert.price.toFixed(2)}</p>
             <IconButton aria-label="favorite" onClick={toggleFavoriteBtn}>
               {status ? <FavoriteIcon /> : <FavoriteBorderIcon />}
             </IconButton>
