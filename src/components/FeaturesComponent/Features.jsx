@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+// import { useEffect } from 'react';
 import {
   Characteristic,
   Characteristics,
@@ -45,10 +45,10 @@ const Features = ({ advert }) => {
     }
   );
 
-  useEffect(() => {
-    console.log(advert);
-    console.log(characteristicArray);
-  }, [characteristicArray]);
+  // useEffect(() => {
+  //   console.log(advert);
+  //   console.log(characteristicArray);
+  // }, [characteristicArray]);
 
   return (
     <FeatureBox>
