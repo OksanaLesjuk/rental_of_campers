@@ -26,14 +26,6 @@ const ShowMoreModal = ({ id }) => {
   const { adverts } = useSelector(getAdverts);
   const advert = adverts.find(advert => advert.id === id);
 
-  // const handleTabChange = tab => {
-  //   setSelectedTab(tab);
-  //   if (tab === 'features') {
-  //     setModalContent(<FeaturesComponent advert={advert} />);
-  //   } else if (tab === 'reviews') {
-  //     setModalContent(<ReviewsComponent advert={advert} />);
-  //   }
-  // };
   const handleTabChange = useCallback(
     tab => {
       setSelectedTab(tab);

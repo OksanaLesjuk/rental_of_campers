@@ -2,7 +2,6 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import GradeIcon from '@mui/icons-material/Grade';
 import FmdGoodOutlinedIcon from '@mui/icons-material/FmdGoodOutlined';
-import EuroIcon from '@mui/icons-material/Euro';
 import IconButton from '@mui/material/IconButton';
 import ImageIcon from '@mui/icons-material/Image';
 
@@ -32,8 +31,7 @@ import { capitalizeFirstLetter } from 'helpers/firstLetter';
 import { ModalContext } from 'context/ModalContext/ModalContext';
 import ShowMoreModal from 'components/ShowMoreModal/ShowMoreModal';
 import { toggleFavorite } from '../../redux/advertsSlice';
-import { useDispatch, useSelector } from 'react-redux';
-import { getAdverts } from '../../redux/selectors';
+import { useDispatch } from 'react-redux';
 
 const CardCamper = ({ advert }) => {
   const [status, setStatus] = useState(advert.isFavorite);
@@ -44,7 +42,7 @@ const CardCamper = ({ advert }) => {
   useEffect(() => {
     setStatus(advert.isFavorite);
     console.log(advert.rating);
-  }, [advert.isFavorite]);
+  }, [advert]);
 
   const image = advert.gallery[0];
 

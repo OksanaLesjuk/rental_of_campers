@@ -8,8 +8,6 @@ import { Link } from 'react-router-dom/dist';
 const Header = () => {
   const theme = useTheme();
 
-  const handleFavoriteBtn = () => {};
-
   return (
     <Stack
       direction="row"

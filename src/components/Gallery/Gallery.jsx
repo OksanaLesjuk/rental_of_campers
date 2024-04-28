@@ -1,6 +1,5 @@
 import CardCamper from 'components/CardCamper/CardCamper';
 import { GalleryBox } from './Gallery.styled';
-import { useEffect } from 'react';
 
 const Gallery = ({ data }) => {
   return (

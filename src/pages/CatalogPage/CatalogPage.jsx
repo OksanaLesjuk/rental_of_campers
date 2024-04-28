@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getAdverts } from '../../redux/operations';
 import { getAdverts as advertsArr } from '../../redux/selectors';
 const CatalogPage = () => {
-  const { adverts, favorites } = useSelector(advertsArr);
+  const { adverts } = useSelector(advertsArr);
   localStorage.removeItem('favorites');
   const dispatch = useDispatch();
 
