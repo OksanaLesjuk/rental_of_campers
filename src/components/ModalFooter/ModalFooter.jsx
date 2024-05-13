@@ -1,7 +1,7 @@
 import { useContext, useEffect } from 'react';
 
 import { BackdropWrapper, IconClose, ModalWrapper } from './ModalFooter.styled';
-import { ModalContext } from 'context/ModalContext/ModalContext';
+import { ModalContext } from '../../context/ModalContext/ModalContext';
 
 export const ModalFooter = ({ children, inOverflow }) => {
   const { closeModal } = useContext(ModalContext);

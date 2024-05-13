@@ -6,10 +6,10 @@ import {
   Navigate,
 } from 'react-router-dom';
 
-import HomePage from 'pages/HomePage/HomePage';
-import CatalogPage from 'pages/CatalogPage/CatalogPage';
-import FavoritePage from 'pages/FavoritePage/FavoritePage';
-import { Layout } from './Layout/Layout';
+import HomePage from '../pages/HomePage/HomePage.jsx';
+import CatalogPage from '../pages/CatalogPage/CatalogPage.jsx';
+import FavoritePage from '../pages/FavoritePage/FavoritePage.jsx';
+import { Layout } from './Layout/Layout.jsx';
 
 export const App = () => {
   return (

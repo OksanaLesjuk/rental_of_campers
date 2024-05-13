@@ -17,8 +17,8 @@ import { getAdverts } from '../../redux/selectors';
 
 import GradeIcon from '@mui/icons-material/Grade';
 import FmdGoodOutlinedIcon from '@mui/icons-material/FmdGoodOutlined';
-import FeaturesComponent from 'components/FeaturesComponent/FeaturesComponent';
-import ReviewsComponent from 'components/ReviewsComponent/ReviewsComponent';
+import FeaturesComponent from '../FeaturesComponent/FeaturesComponent';
+import ReviewsComponent from '../ReviewsComponent/ReviewsComponent';
 
 const ShowMoreModal = ({ id }) => {
   const [SelectedTab, setSelectedTab] = useState('features');

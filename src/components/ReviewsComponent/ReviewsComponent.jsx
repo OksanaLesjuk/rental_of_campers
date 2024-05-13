@@ -1,5 +1,5 @@
-import ModalForm from 'components/ModalForm/ModalForm';
-import Reviews from 'components/Reviews/Reviews';
+import ModalForm from '../ModalForm/ModalForm';
+import Reviews from '../Reviews/Reviews';
 import React from 'react';
 import { ReviewsBox } from './ReviewsComponent.styled';
 

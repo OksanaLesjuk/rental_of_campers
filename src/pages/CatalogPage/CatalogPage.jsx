@@ -1,4 +1,4 @@
-import Gallery from 'components/Gallery/Gallery';
+import Gallery from '../../components/Gallery/Gallery';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAdverts } from '../../redux/operations';

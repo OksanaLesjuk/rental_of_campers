@@ -1,4 +1,4 @@
-import ModalForm from 'components/ModalForm/ModalForm';
+import ModalForm from '../ModalForm/ModalForm';
 import React from 'react';
 import Features from './Features';
 import { FeaturesBox } from './FeaturesComponent.styled';

@@ -27,9 +27,9 @@ import {
   PropertiesListItem,
 } from './CardCamper.styled';
 import { useContext, useState, useEffect } from 'react';
-import { capitalizeFirstLetter } from 'helpers/firstLetter';
-import { ModalContext } from 'context/ModalContext/ModalContext';
-import ShowMoreModal from 'components/ShowMoreModal/ShowMoreModal';
+import { capitalizeFirstLetter } from '../../helpers/firstLetter';
+import { ModalContext } from '../../context/ModalContext/ModalContext';
+import ShowMoreModal from '../ShowMoreModal/ShowMoreModal';
 import { toggleFavorite } from '../../redux/advertsSlice';
 import { useDispatch } from 'react-redux';
 
@@ -41,8 +41,8 @@ const CardCamper = ({ advert }) => {
 
   useEffect(() => {
     setStatus(advert.isFavorite);
-    console.log(advert.rating);
-  }, [advert]);
+    console.log(advert.isFavorite);
+  }, [advert.isFavorite]);
 
   const image = advert.gallery[0];
 
