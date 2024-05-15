@@ -41,7 +41,6 @@ const CardCamper = ({ advert }) => {
 
   useEffect(() => {
     setStatus(advert.isFavorite);
-    console.log(advert.isFavorite);
   }, [advert.isFavorite]);
 
   const image = advert.gallery[0];
@@ -54,9 +53,9 @@ const CardCamper = ({ advert }) => {
     );
   };
 
-  const toggleFavoriteBtn = () => {
-    dispatch(toggleFavorite({ advert }));
-    setStatus(!status);
+  const toggleFavoriteBtn = async () => {
+    await dispatch(toggleFavorite({ advert }));
+    setStatus(prevStatus => !prevStatus);
   };
   return (
     <Card>
